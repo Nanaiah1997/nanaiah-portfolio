@@ -1,0 +1,138 @@
+@import "tailwindcss";
+
+@custom-variant dark (&:where(.dark, .dark *));
+
+:root {
+  --bg: #f4f5f7;
+  --elev: #ffffff;
+  --surface: #e7e9ee;
+  --ink: #101218;
+  --muted: #4e5563;
+  --faint: #5e6573;
+  --line: rgba(16, 18, 24, 0.12);
+  --accent: #2c4bff;
+  --accent-soft: rgba(44, 75, 255, 0.1);
+  --good: #0b7a45;
+  --danger: #b42318;
+  --token-kw: #2c4bff;
+  --token-fn: #0c6b52;
+  --token-ty: #8a4b08;
+  --token-cm: #6a7180;
+  --token-tx: #101218;
+  color-scheme: light;
+}
+
+.dark {
+  --bg: #07080c;
+  --elev: #101218;
+  --surface: #171a22;
+  --ink: #f3f5f8;
+  --muted: #b0b7c3;
+  --faint: #8d95a6;
+  --line: rgba(243, 245, 248, 0.12);
+  --accent: #9eb0ff;
+  --accent-soft: rgba(158, 176, 255, 0.14);
+  --good: #3dd68c;
+  --danger: #ffb0a1;
+  --token-kw: #a9baff;
+  --token-fn: #8fd0c2;
+  --token-ty: #e3c48a;
+  --token-cm: #8d95a6;
+  --token-tx: #e7eaf0;
+  color-scheme: dark;
+}
+
+@theme inline {
+  --color-bg: var(--bg);
+  --color-elev: var(--elev);
+  --color-surface: var(--surface);
+  --color-ink: var(--ink);
+  --color-muted: var(--muted);
+  --color-faint: var(--faint);
+  --color-line: var(--line);
+  --color-accent: var(--accent);
+  --color-good: var(--good);
+  --color-danger: var(--danger);
+  --font-sans: var(--font-geist-sans);
+  --font-mono: var(--font-geist-mono);
+}
+
+html {
+  scroll-behavior: smooth;
+  background: var(--bg);
+}
+
+body {
+  min-height: 100dvh;
+  background-color: var(--bg);
+  background-image: radial-gradient(
+    980px 460px at 78% -140px,
+    var(--accent-soft),
+    transparent 62%
+  );
+  color: var(--ink);
+  font-family: var(--font-sans), ui-sans-serif, system-ui, sans-serif;
+}
+
+::selection {
+  background: color-mix(in srgb, var(--accent) 28%, transparent);
+  color: var(--ink);
+}
+
+.bg-grid {
+  background-image:
+    linear-gradient(to right, var(--line) 1px, transparent 1px),
+    linear-gradient(to bottom, var(--line) 1px, transparent 1px);
+  background-size: 88px 88px;
+  -webkit-mask-image: radial-gradient(ellipse at 50% 0%, #000 0%, transparent 72%);
+  mask-image: radial-gradient(ellipse at 50% 0%, #000 0%, transparent 72%);
+}
+
+.token-kw {
+  color: var(--token-kw);
+}
+
+.token-fn {
+  color: var(--token-fn);
+}
+
+.token-ty {
+  color: var(--token-ty);
+}
+
+.token-cm {
+  color: var(--token-cm);
+}
+
+.token-tx {
+  color: var(--token-tx);
+}
+
+@keyframes menu-in {
+  from {
+    opacity: 0;
+    transform: translateY(-6px);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+.menu-in {
+  animation: menu-in 180ms ease-out;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+
+  .menu-in {
+    animation: none;
+  }
+
+  [data-reveal] {
+    transform: none !important;
+  }
+}
